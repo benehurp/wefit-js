@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-lg-12">
         <h3 class="display-6">Header</h3>
-        <div class="jumbotron" id="jumbotronContent">
+        <div class="jumbotron" id="jumbotronContent" onmouseover="resetStyle(this)" onmouseout="changeStyle(this)">
           <h1 class="display-4">WeFit Test!</h1>
           <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
           <hr class="my-4">
@@ -101,7 +101,7 @@
         <h3 class="display-6">Lista</h3>
       </div>
       <div class="col-lg-4">
-        <ul class="list-group">
+        <ul class="list-group" id="menu">
           <li class="list-group-item active">Primeiro item</li>
           <li class="list-group-item">Segundo item</li>
           <li class="list-group-item">Terceiro item</li>
@@ -117,9 +117,66 @@
     const btnGroup = document.querySelector('.btn-group-vertical')
     btnGroup.classList.remove('btn-group-vertical')
     btnGroup.classList.add('btn-group')
-    
+
     const jumbotronContent = document.querySelector('#jumbotronContent');
     jumbotronContent.classList.add('text-right');
+  </script>
+  <script>
+    function changeStyle(card) {
+      card.style.backgroundColor = "#6c757d";
+      card.style.color = "#fff";
+      const button = card.querySelector(".btn.btn-primary.btn-lg");
+      button.style.backgroundColor = "#28a745";
+      button.style.color = "#fff";
+    }
+
+    function resetStyle(card) {
+      card.style.backgroundColor = "";
+      card.style.color = "";
+      const button = card.querySelector("button");
+      button.style.backgroundColor = "";
+      button.style.color = "";
+    }
+
+    changeStyle(jumbotronContent);
+  </script>
+  <script>
+    const links = document.querySelectorAll(".btn.btn-primary");
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener("mouseover", function () {
+        this.style.backgroundColor = "#28a745";
+      });
+      links[i].addEventListener("mouseout", function () {
+        this.style.backgroundColor = "";
+      });
+    }
+  </script>
+
+  <script>
+    const menu = document.getElementById('menu');
+
+    const quartoItem = document.createElement('li');
+    quartoItem.classList.add('list-group-item');
+    quartoItem.textContent = 'Quarto item';
+
+    const quintoItem = document.createElement('li');
+    quintoItem.classList.add('list-group-item');
+    quintoItem.textContent = 'Quinto item';
+
+    menu.appendChild(quartoItem);
+    menu.appendChild(quintoItem);
+  </script>
+
+  <script>
+    const listItems = document.querySelectorAll('.list-group-item');
+
+    listItems.forEach(item => {
+      item.addEventListener('mouseover', () => {
+        listItems.forEach(otherItem => otherItem.classList.remove('active'));
+
+        item.classList.add('active');
+      });
+    });
   </script>
 </body>
 
