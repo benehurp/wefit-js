@@ -114,14 +114,6 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="js/main.js"></script>
   <script>
-    const btnGroup = document.querySelector('.btn-group-vertical')
-    btnGroup.classList.remove('btn-group-vertical')
-    btnGroup.classList.add('btn-group')
-
-    const jumbotronContent = document.querySelector('#jumbotronContent');
-    jumbotronContent.classList.add('text-right');
-  </script>
-  <script>
     function changeStyle(card) {
       card.style.backgroundColor = "#6c757d";
       card.style.color = "#fff";
@@ -138,42 +130,39 @@
       button.style.color = "";
     }
 
+    const btnGroup = document.querySelector('.btn-group-vertical');
+    btnGroup.classList.replace('btn-group-vertical', 'btn-group');
+
+    const jumbotronContent = document.querySelector('#jumbotronContent');
+    jumbotronContent.classList.add('text-right');
     changeStyle(jumbotronContent);
-  </script>
-  <script>
+
     const links = document.querySelectorAll(".btn.btn-primary");
-    for (let i = 0; i < links.length; i++) {
-      links[i].addEventListener("mouseover", function () {
+    links.forEach(link => {
+      link.addEventListener("mouseover", function () {
         this.style.backgroundColor = "#28a745";
       });
-      links[i].addEventListener("mouseout", function () {
+      link.addEventListener("mouseout", function () {
         this.style.backgroundColor = "";
       });
-    }
-  </script>
+    });
 
-  <script>
     const menu = document.getElementById('menu');
-
     const quartoItem = document.createElement('li');
+    const quintoItem = document.createElement('li');
+
     quartoItem.classList.add('list-group-item');
     quartoItem.textContent = 'Quarto item';
 
-    const quintoItem = document.createElement('li');
     quintoItem.classList.add('list-group-item');
     quintoItem.textContent = 'Quinto item';
 
-    menu.appendChild(quartoItem);
-    menu.appendChild(quintoItem);
-  </script>
+    menu.append(quartoItem, quintoItem);
 
-  <script>
     const listItems = document.querySelectorAll('.list-group-item');
-
     listItems.forEach(item => {
       item.addEventListener('mouseover', () => {
         listItems.forEach(otherItem => otherItem.classList.remove('active'));
-
         item.classList.add('active');
       });
     });
